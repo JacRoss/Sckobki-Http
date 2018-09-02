@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  nginx:
+    build: ./docker-src/nginx
+    ports:
+    - "8080:80"
+    volumes:
+    - ./src:/var/www/app
+    links:
+    - php
+  php:
+    build: ./docker-src/php
+    ports:
+    - "9000:9000"
+    volumes:
+    - ./src:/var/www/app
+    working_dir: /var/www/app
+  app:
+    image: composer
+    command: composer install
+    volumes:
+    - ./src:/var/www/app
+    working_dir: /var/www/app
