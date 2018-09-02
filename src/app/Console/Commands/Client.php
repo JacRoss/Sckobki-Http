@@ -31,7 +31,6 @@ class Client extends Command
             ]);
             $this->writeResult($response);
         } catch (RequestException $e) {
-            $this->warn($e->getMessage());
             $this->writeResult($e->getResponse());
         }
 
